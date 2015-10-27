@@ -1,0 +1,15 @@
+<openerp>
+    <data>
+
+        <record id="space_apartment_view_search" model="ir.ui.view">
+            <field name="name">Apartment Search</field>
+            <field name="model">space.apartments</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</openerp>

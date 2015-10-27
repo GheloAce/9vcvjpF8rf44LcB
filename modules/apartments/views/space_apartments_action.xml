@@ -1,6 +1,17 @@
 <openerp>
     <data>
 
+        <!--  Root -->
+        <menuitem
+                id="space_apartment_menu_root"
+                name="Apartments"
+                />
+        <menuitem
+                id="space_apartment_menu_section"
+                name="Apartments"
+                parent="space_apartment_menu_root"
+                />
+
         <act_window
                 id="space_apartments_action"
                 res_model="space.apartments"
@@ -9,6 +20,7 @@
         <menuitem
                 id="space_apartment_menu"
                 action="space_apartments_action"
+                parent="space_apartment_menu_section"
                 name="Apartments"
                 />
 

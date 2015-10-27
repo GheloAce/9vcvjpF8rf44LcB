@@ -1,0 +1,18 @@
+<openerp>
+    <data>
+
+        <act_window
+                id="res_users_action_leasers"
+                res_model="res.users"
+                domain="[('apartment_ids', '!=', False)]"
+                name="Leasers"
+                />
+        <menuitem
+                id="res_user_menu_leasers"
+                parent="space_apartment_menu_section"
+                action="res_users_action_leasers"
+                name="Leasers"
+                />
+
+    </data>
+</openerp>
