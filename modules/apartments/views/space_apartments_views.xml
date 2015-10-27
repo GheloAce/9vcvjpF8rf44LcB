@@ -1,7 +1,7 @@
 <openerp>
     <data>
 
-        <record id="space_apartment_view_flist" model="ir.ui.view">
+        <record id="space_apartment_view_list" model="ir.ui.view">
             <field name="name">Apartment List</field>
             <field name="model">space.apartments</field>
             <field name="arch" type="xml">
@@ -28,7 +28,7 @@
                         </div>
                         <group>
                             <field name="floor_area"/>
-                            <field name="balance_eur"/>
+                            <field name="balance_eur" widget="monetary"/>
                             <field name="user_id"/>
                         </group>
                     </sheet>

@@ -4,16 +4,16 @@
         <record id="res_users_view_form" model="ir.ui.view">
             <field name="name">User's Apartment Form</field>
             <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="inherit_id" ref="base.view_users_simple_form"/>
             <field name="arch" type="xml">
-                <xpath
-                        expr="//notebook[1]"
-                        position="inside">
-                    <page string="Apartments">
-                        <group class="res_user_apartment_page">
-                            <field name="apartment_ids" colspan="4"/>
+                <xpath expr="//sheet[1]" position="inside">
+                    <group string="Apartments" class="res_user_apartment_page">
+                        <field name="apartment_ids" colspan="2" nolabel="1"/>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="apartment_balance" widget="monetary"/>
+                            <field name="total_rented_area"/>
                         </group>
-                    </page>
+                    </group>
                 </xpath>
             </field>
         </record>

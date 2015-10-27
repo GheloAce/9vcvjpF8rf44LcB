@@ -1,6 +1,7 @@
 # ODOO
 from openerp import models, fields, api, exceptions
-
+# ADDONS
+import openerp.addons.decimal_precision as dp
 
 class SpaceApartments(models.Model):
     _name = "space.apartments"
@@ -8,7 +9,9 @@ class SpaceApartments(models.Model):
     # FIELDS
     name = fields.Char("Address", required=True)
     floor_area = fields.Float(u"Area (m\u00B2)", required=True)
-    balance_eur = fields.Float("Balance (EUR)")
+    balance_eur = fields.Float("Balance (EUR)", digits=dp.get_precision('Account'))
+
+    # RELATE
     user_id = fields.Many2one("res.users", "Client")
 
     @api.one
