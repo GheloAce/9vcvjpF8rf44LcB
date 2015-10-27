@@ -1,0 +1,16 @@
+<openerp>
+    <data>
+
+        <act_window
+                id="space_apartments_action"
+                res_model="space.apartments"
+                name="Apartments"
+                />
+        <menuitem
+                id="space_apartment_menu"
+                action="space_apartments_action"
+                name="Apartments"
+                />
+
+    </data>
+</openerp>

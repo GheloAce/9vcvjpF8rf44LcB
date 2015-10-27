@@ -1,0 +1,41 @@
+<openerp>
+    <data>
+
+        <record id="space_apartment_view_flist" model="ir.ui.view">
+            <field name="name">Apartment List</field>
+            <field name="model">space.apartments</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="floor_area"/>
+                    <field name="balance_eur"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="space_apartment_view_form" model="ir.ui.view">
+            <field name="name">Apartment Form</field>
+            <field name="model">space.apartments</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header/>
+                    <sheet>
+                        <div>
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="floor_area"/>
+                            <field name="balance_eur"/>
+                            <field name="user_id"/>
+                        </group>
+                    </sheet>
+                    <footer/>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
