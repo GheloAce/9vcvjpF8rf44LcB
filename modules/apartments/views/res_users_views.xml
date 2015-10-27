@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <record id="res_users_view_form" model="ir.ui.view">
+            <field name="name">User's Apartment Form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath
+                        expr="//notebook[1]"
+                        position="inside">
+                    <page string="Apartments">
+                        <group class="res_user_apartment_page">
+                            <field name="apartment_ids" colspan="4"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
