@@ -19,7 +19,9 @@ class Users(models.Model):
 
     # CALC
     apartment_balance = fields.Float(
-        "Apartment Balance", digits=dp.get_precision('Account'), compute="_compute_apartment_balance")
+        "Apartment Balance", digits=dp.get_precision('Account'),
+        compute="_compute_apartment_balance",
+        groups="apartments.space_apartment_group_landlord")
     total_rented_area = fields.Float(
         "Total Area Rented", compute="_compute_total_area")
 

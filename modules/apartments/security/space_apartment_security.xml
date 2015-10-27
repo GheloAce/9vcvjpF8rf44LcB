@@ -1,0 +1,25 @@
+<openerp>
+    <data>
+
+        <!-- CATEGORY -->
+        <record id="apartment_category_property_rank" model="ir.module.category">
+            <field name="name">Property Rank</field>
+            <field name="description">
+                The Rank of Authority of the User relating to Apartment operations.
+            </field>
+        </record>
+
+        <!--  GROUPS -->
+        <record id="space_apartment_group_leaser" model="res.groups">
+            <field name="name">Leaser</field>
+            <field name="category_id" ref="apartments.apartment_category_property_rank"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="space_apartment_group_landlord" model="res.groups">
+            <field name="name">Landlord</field>
+            <field name="category_id" ref="apartments.apartment_category_property_rank"/>
+            <field name="implied_ids" eval="[(4, ref('apartments.space_apartment_group_leaser'))]"/>
+        </record>
+
+    </data>
+</openerp>

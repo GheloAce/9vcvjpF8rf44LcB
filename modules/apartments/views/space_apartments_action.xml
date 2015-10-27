@@ -5,6 +5,7 @@
         <menuitem
                 id="space_apartment_menu_root"
                 name="Apartments"
+                groups="apartments.space_apartment_group_leaser"
                 />
         <menuitem
                 id="space_apartment_menu_section"

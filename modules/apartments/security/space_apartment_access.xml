@@ -1,0 +1,24 @@
+<openerp>
+    <data>
+
+        <record id="space_apartment_access_leaser" model="ir.model.access">
+            <field name="name">Leaser's Access to Apartment Records</field>
+            <field name="model_id" ref="model_space_apartments"/>
+            <field name="group_id" ref="apartments.space_apartment_group_leaser"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        <record id="space_apartment_access_landlord" model="ir.model.access">
+            <field name="name">Landlord's Access to Apartment Records</field>
+            <field name="model_id" ref="model_space_apartments"/>
+            <field name="group_id" ref="apartments.space_apartment_group_landlord"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+    </data>
+</openerp>
