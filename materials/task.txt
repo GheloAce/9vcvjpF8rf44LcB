@@ -25,10 +25,10 @@ Import these 2 CSV files into Odoo 8 as follows:
 Please, feel free to call me (send me email) with any questions every work day from 8:00 AM till 8:00PM CET, Berlin timezone.
 My email is:
 
-email: filip@veriosoft.com
-mobile phone: +49 171 77 359 44
-skype: filip.planinsky (I am not constantly online on Skype. However if you send me a text message on my phone, I should be able to join Skype chat promptly.)
+email: ***
+mobile phone: ***
+skype: *** (I am not constantly online on Skype. However if you send me a text message on my phone, I should be able to join Skype chat promptly.)
 
 
 Kind regards,
-Filip Planinsky
+*** ***
