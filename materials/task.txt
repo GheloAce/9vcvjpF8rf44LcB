@@ -1,0 +1,34 @@
+Hi Ghelo,
+
+
+Import these 2 CSV files into Odoo 8 as follows:
+
+* customize Odoo in order to accommodate the data from the CSV files
+
+* In Odoo, the user must be able to see the following:
+- must be able to find a person by name or email
+- must be able to see a list of all persons
+- must be able to see a list of all apartments
+- must be able to see which apartment(s) is(are) owned by a given person
+- must be able to see the overall balance for a person
+- must be able to see the total sum of sq. meters owned by a person
+
+* transform these “plain” CSV files into “Odoo” CSV format, which can be directly imported. Use Python to write a separate tool (not part of Odoo), which just takes the CSV files as input and outputs “Odoo” CSV files, which are ready for direct import in Odoo.
+
+* provide 2 levels of access in Odoo:
+- a group of users who can see persons and apartments, but are not able to see balance info data.
+- a group of users who can see persons, apartments, and balance info data
+
+* use the built-in Odoo import functionality to import the necessary data from your transformed CSV files
+
+
+Please, feel free to call me (send me email) with any questions every work day from 8:00 AM till 8:00PM CET, Berlin timezone.
+My email is:
+
+email: filip@veriosoft.com
+mobile phone: +49 171 77 359 44
+skype: filip.planinsky (I am not constantly online on Skype. However if you send me a text message on my phone, I should be able to join Skype chat promptly.)
+
+
+Kind regards,
+Filip Planinsky
