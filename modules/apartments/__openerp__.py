@@ -10,6 +10,9 @@
     ],
     'description': "A module that allows users to check their Apartment Details",
     'data': [
+        # SECURITY
+        'security/space_apartment_security.xml',
+        'security/space_apartment_access.xml',
         # VIEWS
         'views/space_apartments_views.xml',
         'views/space_apartments_action.xml',
@@ -17,8 +20,5 @@
         'views/res_users_views.xml',
         'views/res_users_action.xml',
         'views/res_users_search.xml',
-        # SECURITY
-        'security/space_apartment_security.xml',
-        'security/space_apartment_access.xml',
     ],
 }
