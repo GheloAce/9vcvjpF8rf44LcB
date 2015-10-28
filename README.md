@@ -14,11 +14,11 @@
     1. [x] A group of users who can see persons and apartments, but are not able 
         to see balance info data.
     2. [x] A group of users who can see persons, apartments, and balance info data
-4. [ ] __CSV Converter__.  Transform these “plain” CSV files into “Odoo” CSV 
+4. [x] __CSV Converter__.  Transform these “plain” CSV files into “Odoo” CSV
     format, which can be directly imported. Use Python to write a separate tool 
     (not part of Odoo), which just takes the CSV files as input and outputs 
     “Odoo” CSV files, which are ready for direct import in Odoo.
-5. [ ] __CSV Importation__.  Use the built-in Odoo import functionality to import the 
+5. [x] __CSV Importation__.  Use the built-in Odoo import functionality to import the
     necessary data from your transformed CSV files
 
 ## Issues ##
