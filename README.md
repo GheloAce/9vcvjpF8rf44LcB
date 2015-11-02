@@ -20,6 +20,25 @@
     “Odoo” CSV files, which are ready for direct import in Odoo.
 5. [x] __CSV Importation__.  Use the built-in Odoo import functionality to import the
     necessary data from your transformed CSV files
+6. [ ] __Rework: Less User Input__.  Recode the Odoofier to run in '1 go' and not
+    need the user to input the prefixes manually.
+    1. I think you can do better with the input parameters validation and format.
+        The help shown is a bit misleading.  Actually, if you are not a developer
+        and you do not look at the source, it will be hard to understand how to
+        use the tool.
+    2. I think you should not expect any user input (like relational prefixes,
+        just generate them in the tool, i.e. hardcode a string as a prefix. This
+        should be enough.)
+    3. Both files should be processed in one run. In the current version I need
+        to run the tool twice.  Also, I can enter different prefixes for the users in
+        the 1st and 2nd run, which I think will brake the Odoo import later.
+
+        In a few words, you are processing the files in a detached manner,
+        relying on the user to enter the correct prefixes.
+
+        This way, the tool will work with any file or files, but the goal is to make
+        a tool, which works for this particular case and is automated as much
+        as possible.  There is no need to create a “generic” Odoo  “Odoofier” tool.
 
 ## Issues ##
 
