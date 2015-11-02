@@ -1,0 +1,7 @@
+Apt ID,Address,Sq. meters,Balance (EUR),User ID
+apartment.apartment_1,"Mühlenfeldstraße 51, Berlin",45,150,apartment.user_1
+apartment.apartment_2,"Kurfürstenstraße 61, Berlin",57,225.5,apartment.user_1
+apartment.apartment_3,"Amselgrund 5, Berlin",110,325.99,apartment.user_2
+apartment.apartment_4,"Schulzendorfer Straße 120, 13467 Berlin",35,139.9,apartment.user_1
+apartment.apartment_5,"Martin-Luther-Straße 13, 13467 Berlin",49,167,apartment.user_3
+apartment.apartment_6,"Oeserstraße 58, 13509 Berlin",78,199.9,apartment.user_2

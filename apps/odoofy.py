@@ -124,6 +124,7 @@ class Odoofier:
     def _say_help():
         print(u"""
 This Program will convert your ordinary CSV to Odoo compatible CSV.
+See the `settings.py` for advance options.
         """)
 
 if __name__ == '__main__':
