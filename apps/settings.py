@@ -1,7 +1,7 @@
 # noinspection PyClassHasNoInit
 class Settings:
 
-    input_files = '../materials/*.csv'
+    input_files = './ordinary/*.csv'
     output_dir = './odoofied'
 
     force_override = True
