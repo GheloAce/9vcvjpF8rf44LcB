@@ -25,15 +25,15 @@ class Odoofier:
     PATTERN_validPrefix = compile(r"^[a-z][a-z0-9_\.]*[a-z0-9_]$", IGNORECASE)
 
     def __init__(self):
-        self._setAttributes()
+        self._set_attributes()
         if self.is_asking_help:
-            self._sayHelp()
+            self._say_help()
         else:
-            self._askIfOutputOkay()
-            self._eatCSVFiles()
-            self._sayCompletion()
+            self._ask_if_output_okay()
+            self._eat_csv_files()
+            self._say_completion()
 
-    def _askIfOutputOkay(self):
+    def _ask_if_output_okay(self):
         # PREPARE
         file_directory, file_name = split(self.output_file_path)
         # PROCESS
@@ -47,7 +47,7 @@ class Odoofier:
             error(u"The output file exist, use `-f` option to override it.")
             exit()
 
-    def _setAttributes(self):
+    def _set_attributes(self):
         # PREPARE
         opt_list, args = getopt(argv[1:], self.FLAGS_available)
         opt_list = [(flag, True if value == '' else value) for flag, value in opt_list]
@@ -68,12 +68,12 @@ class Odoofier:
             file_head, file_tail = splitext(split(self.input_file_path)[1])
             self.file_name_id = self.PATTERN_invalidIdCharacters.sub(u"_", file_head)
 
-    def _eatCSVFiles(self):
+    def _eat_csv_files(self):
         # PREPARE
         file_stream = open(self.input_file_path)
         input_csv_iterator = csv.reader(file_stream)
         header_row = input_csv_iterator.next()
-        relation_data = self._askUserRelationPrefix(header_row)
+        relation_data = self._ask_user_relation_prefix(header_row)
         output_csv_rows = []
         # PROCESS
         for row in input_csv_iterator:
@@ -93,11 +93,11 @@ class Odoofier:
             # CONCLUDE
             output_csv_rows.append(final_row)
         # CONCLUDE
-        self._boxCSVFile(header_row, output_csv_rows)
+        self._box_csv_file(header_row, output_csv_rows)
 
-    def _askUserRelationPrefix(self, header_row):
+    def _ask_user_relation_prefix(self, header_row):
         # METHOD
-        def askRelationshipPrefix(das_index, das_header):
+        def ask_relationship_prefix(das_index, das_header):
             try:
                 input_prefix = raw_input(u"[{}] {}: ".format(das_index, das_header))
                 assert input_prefix == u'' or self.PATTERN_validPrefix.search(input_prefix)
@@ -108,7 +108,7 @@ class Odoofier:
                     u"  (1) contain underscores and alphanumeric characters\n"
                     u"  (2) start with a letter; \n"
                     u"  (3) contain at least a single dot, but end with it.\n")
-                askRelationshipPrefix(das_index, das_header)
+                ask_relationship_prefix(das_index, das_header)
         # PREPARE
         output_relationships = []
         # SHOW
@@ -120,11 +120,11 @@ class Odoofier:
         # PROCESS
         for index, header in enumerate(header_row):
             output_relationships.append(
-                (index, askRelationshipPrefix(index, header)))
+                (index, ask_relationship_prefix(index, header)))
         # CONCLUDE
         return output_relationships
 
-    def _boxCSVFile(self, csv_header, csv_rows):
+    def _box_csv_file(self, csv_header, csv_rows):
         with open(self.output_file_path, mode='w+') as file_stream:
             # PREPARE
             output_csv_stream = csv.writer(file_stream, lineterminator=u"\n")
@@ -133,11 +133,11 @@ class Odoofier:
             output_csv_stream.writerows(csv_rows)
 
     @staticmethod
-    def _sayCompletion():
+    def _say_completion():
         info(u"Odoo-fication of CSV files are done!")
 
     @staticmethod
-    def _sayHelp():
+    def _say_help():
         print(u"""
 This Program will convert your ordinary CSV to Odoo compatible CSV.
 
