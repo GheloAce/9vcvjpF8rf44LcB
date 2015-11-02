@@ -4,18 +4,20 @@ from logging import info, error
 # noinspection PyUnresolvedReferences
 from pprint import pprint
 # ESSENTIAL
-from os.path import isfile, isdir, split, splitext
+from os.path import isfile, isdir, split, splitext, join
+from os import makedirs
 from sys import argv
 from getopt import getopt
 from re import compile, IGNORECASE
 import csv
-
+from glob import glob
+# ODOOFIER
+from settings import Settings
 
 """
 Limitations:
 * Assumes 1st row is always the header
 * Not prepared for CSVs with inconsistent rows item counts
-* If Output CSV path's parent directory does not exist, user will need to create it
 """
 
 
@@ -24,41 +26,42 @@ class Odoofier:
     PATTERN_invalidIdCharacters = compile(r"[^a-z0-9_]", IGNORECASE)
     PATTERN_validPrefix = compile(r"^[a-z][a-z0-9_\.]*[a-z0-9_]$", IGNORECASE)
 
-    def __init__(self):
-        self._set_attributes()
+    def __init__(self, input_file):
+        self._set_attributes(input_file)
         if self.is_asking_help:
             self._say_help()
         else:
-            self._ask_if_output_okay()
+            self._ask_settings_okay()
             self._eat_csv_files()
             self._say_completion()
 
-    def _ask_if_output_okay(self):
+    def _ask_settings_okay(self):
         # PREPARE
         file_directory, file_name = split(self.output_file_path)
-        # PROCESS
+        # HANDLE
         if not isfile(self.input_file_path):
             error(u"The Input CSV file does not exist.  Check the spelling of you r path.")
-            exit()
-        if not isdir(file_directory):
-            error(u"The Directory for the Output CSV does not exist, create it first.")
             exit()
         if not self.is_force_override_output and isfile(self.output_file_path):
             error(u"The output file exist, use `-f` option to override it.")
             exit()
+        # PROCESS
+        if not isdir(file_directory):
+            makedirs(file_directory)
 
-    def _set_attributes(self):
+    def _set_attributes(self, input_file):
         # PREPARE
         opt_list, args = getopt(argv[1:], self.FLAGS_available)
         opt_list = [(flag, True if value == '' else value) for flag, value in opt_list]
         opt_dict = dict(opt_list)
-        self.is_force_override_output = opt_dict.get('-f', False)
+        self.is_force_override_output = opt_dict.get('-f', Settings.force_override)
         self.is_asking_help = opt_dict.get('-h', False)
         # HANDLE
         if not self.is_asking_help:
             try:
-                self.input_file_path = opt_dict.get('-i', args and args.pop(0))
-                self.output_file_path = opt_dict.get('-o', args and args.pop(0))
+                self.input_file_path = input_file
+                self.output_file_path = join(
+                    Settings.output_dir, u"{}_odoo{}".format(*splitext(split(input_file)[1])))
             except IndexError:
                 error(
                     u"You need to specify the Input and Output file paths, "
@@ -73,7 +76,7 @@ class Odoofier:
         file_stream = open(self.input_file_path)
         input_csv_iterator = csv.reader(file_stream)
         header_row = input_csv_iterator.next()
-        relation_data = self._ask_user_relation_prefix(header_row)
+        relation_data = self._get_relation_prefix()
         output_csv_rows = []
         # PROCESS
         for row in input_csv_iterator:
@@ -86,7 +89,7 @@ class Odoofier:
                 # PROCESS
                 if relation_prefix:
                     final_value = u",".join([
-                        (relation_prefix + str(id_value))
+                        (relation_prefix.format(id_value))
                         for id_value in final_value.split(',')])
                 # CONCLUDE
                 final_row.append(final_value)
@@ -95,34 +98,15 @@ class Odoofier:
         # CONCLUDE
         self._box_csv_file(header_row, output_csv_rows)
 
-    def _ask_user_relation_prefix(self, header_row):
-        # METHOD
-        def ask_relationship_prefix(das_index, das_header):
-            try:
-                input_prefix = raw_input(u"[{}] {}: ".format(das_index, das_header))
-                assert input_prefix == u'' or self.PATTERN_validPrefix.search(input_prefix)
-                return input_prefix or False
-            except AssertionError:
-                print(
-                    u"*Error* The Relationship Prefix may only:  \n"
-                    u"  (1) contain underscores and alphanumeric characters\n"
-                    u"  (2) start with a letter; \n"
-                    u"  (3) contain at least a single dot, but end with it.\n")
-                ask_relationship_prefix(das_index, das_header)
+    def _get_relation_prefix(self):
         # PREPARE
-        output_relationships = []
-        # SHOW
-        print(
-            u"# External ID Prefixes #\n"
-            u"Directions:  This will prompt you with all of the CSV columns, \n"
-            u"  if they are a Relationship field, input the Relationship Prefix. \n"
-            u"  Leave blank otherwise.")
+        target_file = self.file_name_id
         # PROCESS
-        for index, header in enumerate(header_row):
-            output_relationships.append(
-                (index, ask_relationship_prefix(index, header)))
-        # CONCLUDE
-        return output_relationships
+        try:
+            return Settings.file_columns[target_file]
+        except ArithmeticError:
+            error(u"The file `{}` does not exist".format(target_file))
+            exit()
 
     def _box_csv_file(self, csv_header, csv_rows):
         with open(self.output_file_path, mode='w+') as file_stream:
@@ -140,12 +124,8 @@ class Odoofier:
     def _say_help():
         print(u"""
 This Program will convert your ordinary CSV to Odoo compatible CSV.
-
-Usage:
-
-    $ odoofy.py -i `input_CSV_path` -o `output_CSV_path`
-
         """)
 
 if __name__ == '__main__':
-    Odoofier()
+    for input_file_path in glob(Settings.input_files):
+        Odoofier(input_file_path)
