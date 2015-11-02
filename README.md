@@ -20,7 +20,7 @@
     “Odoo” CSV files, which are ready for direct import in Odoo.
 5. [x] __CSV Importation__.  Use the built-in Odoo import functionality to import the
     necessary data from your transformed CSV files
-6. [ ] __Rework: Less User Input__.  Recode the Odoofier to run in '1 go' and not
+6. [x] __Rework: Less User Input__.  Recode the Odoofier to run in '1 go' and not
     need the user to input the prefixes manually.
     1. I think you can do better with the input parameters validation and format.
         The help shown is a bit misleading.  Actually, if you are not a developer
